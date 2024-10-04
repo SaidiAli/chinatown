@@ -2,6 +2,7 @@ import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
+import banner from '~/assets/banner-2.jpg';
 
 /**
  * @type {MetaFunction}
@@ -77,18 +78,22 @@ export default function Homepage() {
  */
 function FeaturedCollection({collection}) {
   if (!collection) return null;
-  const image = collection?.image;
+  // const image = collection?.image;
   return (
     <Link
       className="featured-collection"
       to={`/collections/${collection.handle}`}
     >
-      {image && (
-        <div className="featured-collection-image">
-          <Image data={image} sizes="100vw" />
-        </div>
-      )}
-      <h1>{collection.title}</h1>
+      <div className="featured-collection-image mb-4">
+        <img
+          src={banner}
+          alt={''}
+          sizes=""
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+      <h1 className='text-2xl font-bold'>{collection.title}</h1>
     </Link>
   );
 }
@@ -101,7 +106,7 @@ function FeaturedCollection({collection}) {
 function RecommendedProducts({products}) {
   return (
     <div className="recommended-products">
-      <h2>Recommended Products</h2>
+      <h2 className='text-xl font-bold'>Recommended Products</h2>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
           {(response) => (
@@ -118,10 +123,10 @@ function RecommendedProducts({products}) {
                         aspectRatio="1/1"
                         sizes="(min-width: 45em) 20vw, 50vw"
                       />
-                      <h4>{product.title}</h4>
-                      <small>
+                      <h4 className='line-clamp-1'>{product.title}</h4>
+                      <p className='text-3xl'>
                         <Money data={product.priceRange.minVariantPrice} />
-                      </small>
+                      </p>
                     </Link>
                   ))
                 : null}

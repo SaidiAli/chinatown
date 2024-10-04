@@ -13,6 +13,7 @@ import {
 import favicon from '~/assets/favicon.svg';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
+import tailwindStyles from '~/styles/tailwind.css?url';
 import {PageLayout} from '~/components/PageLayout';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 
@@ -38,6 +39,7 @@ export const shouldRevalidate = ({
 export function links() {
   return [
     {rel: 'stylesheet', href: resetStyles},
+    {rel: 'stylesheet', href: tailwindStyles},
     {rel: 'stylesheet', href: appStyles},
     {
       rel: 'preconnect',
@@ -162,6 +164,23 @@ export function Layout({children}) {
         )}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
+
+        <Scripts
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.op = window.op || function(...args) {
+              (window.op.q = window.op.q || []).push(args);
+            };
+            window.op('init', {
+              clientId: 'b66dd2c9-b33c-46a6-94ee-2057e1a8857e',
+              trackScreenViews: true,
+              trackOutgoingLinks: true,
+              trackAttributes: true,
+            });
+          `,
+          }}
+        />
+        <Scripts src="https://openpanel.dev/op1.js" defer async />
       </body>
     </html>
   );
