@@ -1,4 +1,4 @@
-import {useNonce, getShopAnalytics, Analytics} from '@shopify/hydrogen';
+import {useNonce, getShopAnalytics, Analytics, Script} from '@shopify/hydrogen';
 import {defer} from '@shopify/remix-oxygen';
 import {
   Links,
@@ -165,7 +165,7 @@ export function Layout({children}) {
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
 
-        <Scripts
+        <Script
           dangerouslySetInnerHTML={{
             __html: `
             window.op = window.op || function(...args) {
@@ -180,7 +180,7 @@ export function Layout({children}) {
           `,
           }}
         />
-        <Scripts src="https://openpanel.dev/op1.js" defer async />
+        <Script src="https://openpanel.dev/op1.js" defer async />
       </body>
     </html>
   );
