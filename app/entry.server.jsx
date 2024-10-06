@@ -22,8 +22,8 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
-    scriptSrc: ["'self'", 'https://openpanel.dev', 'https://us.i.posthog.com'],
-    connectSrc: ["'self'", 'https://openpanel.dev', 'https://us.i.posthog.com'],
+    scriptSrc: ["'self'", 'https://*.openpanel.dev', 'https://*.posthog.com', 'https://cdn.shopify.com'],
+    connectSrc: ["'self'", 'https://*.openpanel.dev', 'https://*.posthog.com'],
   });
 
   const body = await renderToReadableStream(
