@@ -8,7 +8,18 @@ import banner from '~/assets/banner-2.jpg';
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Home'}];
+  return [
+    {title: 'Chinatown Ug'},
+    {
+      name: 'description',
+      content: 'Number one online shopping store',
+    },
+    {
+      tagName: 'link',
+      rel: 'canonical',
+      href: 'https://chinatownug.com',
+    },
+  ];
 };
 
 /**
@@ -93,7 +104,7 @@ function FeaturedCollection({collection}) {
           loading="lazy"
         />
       </div>
-      <h1 className='text-2xl font-bold'>{collection.title}</h1>
+      <h1 className="text-2xl font-bold">{collection.title}</h1>
     </Link>
   );
 }
@@ -106,7 +117,7 @@ function FeaturedCollection({collection}) {
 function RecommendedProducts({products}) {
   return (
     <div className="recommended-products">
-      <h2 className='text-xl font-bold'>Recommended Products</h2>
+      <h2 className="text-xl font-bold">Recommended Products</h2>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
           {(response) => (
@@ -123,8 +134,8 @@ function RecommendedProducts({products}) {
                         aspectRatio="1/1"
                         sizes="(min-width: 45em) 20vw, 50vw"
                       />
-                      <h4 className='line-clamp-1'>{product.title}</h4>
-                      <p className='text-3xl'>
+                      <h4 className="line-clamp-1">{product.title}</h4>
+                      <p className="text-3xl">
                         <Money data={product.priceRange.minVariantPrice} />
                       </p>
                     </Link>
