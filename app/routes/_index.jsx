@@ -3,6 +3,7 @@ import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
 import banner from '~/assets/banner-2.jpg';
+import {SparklesCore} from '~/components/custom/SparklingHero';
 
 /**
  * @type {MetaFunction}
@@ -12,7 +13,8 @@ export const meta = () => {
     {title: 'Chinatown Ug'},
     {
       name: 'description',
-      content: 'Number one online shopping store',
+      content:
+        'Welcome to Chinatown Ug, your number one online shopping store around town.',
     },
     {
       tagName: 'link',
@@ -76,7 +78,23 @@ export default function Homepage() {
   const data = useLoaderData();
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
+      <div className="h-[20rem] relative w-full flex flex-col items-center justify-center overflow-hidden rounded-md my-4 bg-[url('https://res.cloudinary.com/zurri-cloud/image/upload/v1728018749/jw2zaueoc9zsibafmckx.jpg')] bg-center bg-no-repeat">
+        <div className="w-full absolute inset-0 h-screen">
+          <SparklesCore
+            id="tsparticlesfullpage"
+            background="transparent"
+            minSize={0.6}
+            maxSize={1.4}
+            particleDensity={80}
+            className="w-full h-full"
+            particleColor="#000000"
+          />
+        </div>
+        <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center relative z-20">
+          Chinatown UG
+        </h1>
+      </div>
+      {/* <FeaturedCollection collection={data.featuredCollection} /> */}
       <RecommendedProducts products={data.recommendedProducts} />
     </div>
   );
@@ -95,7 +113,7 @@ function FeaturedCollection({collection}) {
       className="featured-collection"
       to={`/collections/${collection.handle}`}
     >
-      <div className="featured-collection-image mb-4">
+      <div className="featured-collection-image mb-4 h-[300px] w-full">
         <img
           src={banner}
           alt={''}

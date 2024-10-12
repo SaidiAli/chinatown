@@ -79,7 +79,7 @@ export default function Collection() {
 
   return (
     <div className="collection">
-      <h1>{collection.title}</h1>
+      <h1 className='text-2xl font-semibold'>{collection.title}</h1>
       <p className="collection-description">{collection.description}</p>
       <PaginatedResourceSection
         connection={collection.products}
@@ -130,8 +130,8 @@ function ProductItem({product, loading}) {
           sizes="(min-width: 45em) 400px, 100vw"
         />
       )}
-      <h4>{product.title}</h4>
-      <small>
+      <h4 className='line-clamp-1'>{product.title}</h4>
+      <small className='text-2xl'>
         <Money data={product.priceRange.minVariantPrice} />
       </small>
     </Link>
